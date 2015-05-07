@@ -1,24 +1,31 @@
 #include <iostream>
 #include <ctime>
+#include "Defines.h"
+#include "CharacterManager.h"
+#include "Menu_System.h"
 
 using namespace std;
 
+// -----------------------------------------
+void Init()
+{
+	// creates all global variables 
+	g_pCharacterManager = new CharacterManager();
+	g_pMenuSystem = new Menu_System();
+}
+// -----------------------------------------
 int main() 
 {
-	int i;
+	Init();
 
-	cout << "Hello World!" << endl;
-	cout << "Start Input here: ";
-
-	cin >> i;
-
-	system("cls");
-
-	cin >> i;
+	while ( !g_pMenuSystem->GameComplete() )
+	{
+		g_pMenuSystem->Update();
+	}
 
 	return 0;
 }
-
+// -----------------------------------------
 void wait(int wait_time)
 {
 	long *start_time = new long;
@@ -29,3 +36,4 @@ void wait(int wait_time)
 
 	delete start_time;
 };
+// -----------------------------------------
